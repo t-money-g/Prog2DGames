@@ -36,6 +36,8 @@ const double PI = 3.14159265;
 
 // graphic images
 const char MENU_IMAGE[] =    "pictures\\fullDemoRender_Green.png";      // menu texture
+// TODO currently image only has one image of the player
+// 
 const char PLAYER_IMAGE[] =  "pictures\\idle__000.png";
 const char PLYAER_IMAGE_SWING_SWORD[] = "pictures\\swing__007.png";
 
@@ -57,6 +59,14 @@ const UCHAR CONSOLE_KEY  = '`';         // ` key
 const UCHAR ESC_KEY      = VK_ESCAPE;   // escape key
 const UCHAR ALT_KEY      = VK_MENU;     // Alt key
 const UCHAR ENTER_KEY    = VK_RETURN;   // Enter key
+const UCHAR PLAYER_LEFT	 = 'A';
+const UCHAR PLAYER_RIGHT = 'D';
+const UCHAR PLAYER_UP	 = 'W';
+const UCHAR PLAYER_DOWN  = 'S';
+const UCHAR UP =  VK_UP;
+const UCHAR DOWN = VK_DOWN;
+const UCHAR LEFT = VK_LEFT;
+const UCHAR RIGHT = VK_RIGHT;
 
 //=============================================================================
 // Function templates for safely dealing with pointer referenced items.

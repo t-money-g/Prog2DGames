@@ -9,6 +9,12 @@
 #include "textureManager.h"
 #include "image.h"
 #include "textDX.h"
+#include "player.h"
+
+namespace discordiaNS
+{
+
+}
 
 class Discordia :public Game
 {
@@ -16,7 +22,7 @@ private:
 	// game items
 	TextureManager menuTexture; // textures
 	TextureManager playerTexture; 
-	Image player;
+	Player player;
 	Image   menu;               // menu image
 	TextDX  *dxFont;            // DirectX font
 	std::string  message;

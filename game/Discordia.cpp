@@ -39,16 +39,21 @@ void Discordia::initialize(HWND hwnd)
 	if (!playerTexture.initialize(graphics, PLAYER_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player texture"));
 
-	if (!player.initialize(graphics, 0, 0, 0, &playerTexture))
+	/*if (!player.initialize(this, playerNS::WIDTH,playerNS::HEIGHT, playerNS::TEXTURE_COLS, &playerTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player")); */
+
+	if (!player.initialize(this, 0,0,0, &playerTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player"));
 
 	
 	menu.setY(0);
 	menu.setX(0);
 
+	player.setFrames(playerNS::PLAYER_START_FRAME, playerNS::PLAYER_END_FRAME);
+	player.setCurrentFrame(playerNS::PLAYER_START_FRAME);
+
 	player.setX(GAME_WIDTH / 4);
 	player.setY(GAME_HEIGHT / 4);
-
 	return;
 }
 
@@ -67,6 +72,23 @@ void Discordia::update()
 		}
 	}
 	else {
+	
+		if (input->isKeyDown(PLAYER_RIGHT))
+		{
+			player.setX(player.getX() + frameTime * playerNS::SPEED);
+		}
+		if (input->isKeyDown(PLAYER_LEFT))
+		{
+			player.setX(player.getX() - frameTime * playerNS::SPEED);
+		}
+		if (input->isKeyDown(PLAYER_DOWN))
+		{
+			player.setY(player.getY() + frameTime * playerNS::SPEED);
+		}
+		if (input->isKeyDown(PLAYER_UP))
+		{
+			player.setY(player.getY() - frameTime * playerNS::SPEED);
+		}
 		//GameLogic
 	}
 
