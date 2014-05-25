@@ -35,12 +35,12 @@ void Discordia::initialize(HWND hwnd)
 	if (dxFont->initialize(graphics, 18, true, false, "Adventure") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
-	menu.setDegrees(300);
-	menu.setScale(0.002861f);
-
-	message = "\n\n\nDiscordia\n\n";
 	
-	messageY = GAME_HEIGHT;
+	menu.setY(0);
+	menu.setX(0);
+	//message = "\n\n\nDiscordia\n\n";
+	
+	//messageY = 0;
 
 	return;
 }
@@ -50,26 +50,25 @@ void Discordia::initialize(HWND hwnd)
 //=============================================================================
 void Discordia::update()
 {
-	if (menu.getDegrees() > 0)
+	if (menuOn)
 	{
-		menu.setDegrees(menu.getDegrees() - frameTime * 120);
-		menu.setScale(menu.getScale() + frameTime * 0.4f);
+		if (input->anyKeyPressed()){
+			menuOn = false;
+			input->clearAll();
+			//start the game
+			startLevel();
+		}
 	}
-	else if (messageY > -500)
-	{
-		menu.setDegrees(0);
-		menu.setY(menu.getY() - frameTime * 50);
-		messageY -= frameTime * 50;
+	else {
+		//GameLogic
 	}
-	else    // start over
-	{
-		menu.setDegrees(300);
-		menu.setScale(0.002861f);
-		menu.setY(0);
-		messageY = GAME_HEIGHT;
-	}
+
 }
 
+
+void startLevel() {
+
+}
 //=============================================================================
 // Artificial Intelligence
 //=============================================================================
@@ -89,7 +88,9 @@ void Discordia::render()
 {
 	graphics->spriteBegin();                // begin drawing sprites
 
-	menu.draw();
+	if (menuOn) {
+		menu.draw();
+	}
 	dxFont->setFontColor(graphicsNS::ORANGE);
 	dxFont->print(message, 20, (int)messageY);
 

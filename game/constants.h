@@ -33,7 +33,7 @@ const float MAX_FRAME_TIME = 1.0f/MIN_FRAME_RATE; // maximum time used in calcul
 const double PI = 3.14159265;
 
 // graphic images
-const char MENU_IMAGE[] =     "pictures\\menu.png";      // menu texture
+const char MENU_IMAGE[] =    "pictures\\fullDemoRender_Green.png";      // menu texture
 const char PLAYER_IMAGE[] = "..\\..\\proto_texts\\player_idle__000.png";
 
 // audio files required by audio.cpp

@@ -19,6 +19,7 @@ private:
 	TextDX  *dxFont;            // DirectX font
 	std::string  message;
 	float messageY;
+	bool menuOn = true;
 
 public:
 	Discordia();
@@ -31,6 +32,7 @@ public:
 	void render();      // "
 	void releaseAll();
 	void resetAll();
+	void startLevel();
 };
 
 #endif
