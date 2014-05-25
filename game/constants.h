@@ -23,6 +23,8 @@ const bool FULLSCREEN = false;              // windowed or fullscreen
 // a 16:10 resolution seems to be OK see: http:///www.bit-tech.net/blog/2012/10/22/16-10-vs-16-9-the-monitor-aspect-ratio/
 const UINT GAME_WIDTH =  960;               // width of game in pixels
 const UINT GAME_HEIGHT = 600;               // height of game in pixels
+
+
  
 // game
 const bool VSYNC = false;                   // true locks display to vertical sync rate
@@ -34,7 +36,9 @@ const double PI = 3.14159265;
 
 // graphic images
 const char MENU_IMAGE[] =    "pictures\\fullDemoRender_Green.png";      // menu texture
-const char PLAYER_IMAGE[] = "..\\..\\proto_texts\\player_idle__000.png";
+const char PLAYER_IMAGE[] =  "pictures\\idle__000.png";
+const char PLYAER_IMAGE_SWING_SWORD[] = "pictures\\swing__007.png";
+
 
 // audio files required by audio.cpp
 // WAVE_BANK must be location of .xwb file.

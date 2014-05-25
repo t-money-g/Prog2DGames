@@ -31,16 +31,23 @@ void Discordia::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing menu"));
 
 	// initialize DirectX font
-	// 18 pixel high Arial
+	// 18 pixel high Adventure
 	if (dxFont->initialize(graphics, 18, true, false, "Adventure") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
+	// player image
+	if (!playerTexture.initialize(graphics, PLAYER_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player texture"));
+
+	if (!player.initialize(graphics, 0, 0, 0, &playerTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player"));
 
 	
 	menu.setY(0);
 	menu.setX(0);
-	//message = "\n\n\nDiscordia\n\n";
-	
-	//messageY = 0;
+
+	player.setX(GAME_WIDTH / 4);
+	player.setY(GAME_HEIGHT / 4);
 
 	return;
 }
@@ -66,7 +73,7 @@ void Discordia::update()
 }
 
 
-void startLevel() {
+void Discordia::startLevel() {
 
 }
 //=============================================================================
@@ -90,9 +97,13 @@ void Discordia::render()
 
 	if (menuOn) {
 		menu.draw();
+		dxFont->setFontColor(graphicsNS::ORANGE);
+		dxFont->print(message, 20, (int)messageY);
 	}
-	dxFont->setFontColor(graphicsNS::ORANGE);
-	dxFont->print(message, 20, (int)messageY);
+	else {
+		player.draw();
+	}
+	
 
 	graphics->spriteEnd();                  // end drawing sprites
 }
@@ -105,6 +116,7 @@ void Discordia::releaseAll()
 {
 	dxFont->onLostDevice();
 	menuTexture.onLostDevice();
+	playerTexture.onLostDevice();
 	Game::releaseAll();
 	return;
 }
@@ -116,6 +128,7 @@ void Discordia::releaseAll()
 void Discordia::resetAll()
 {
 	menuTexture.onResetDevice();
+	playerTexture.onResetDevice();
 	dxFont->onResetDevice();
 	Game::resetAll();
 	return;

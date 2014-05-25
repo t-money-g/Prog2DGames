@@ -15,6 +15,8 @@ class Discordia :public Game
 private:
 	// game items
 	TextureManager menuTexture; // textures
+	TextureManager playerTexture; 
+	Image player;
 	Image   menu;               // menu image
 	TextDX  *dxFont;            // DirectX font
 	std::string  message;
