@@ -20,14 +20,16 @@ class Discordia :public Game
 {
 private:
 	// game items
-	TextureManager menuTexture; // textures
+	TextureManager menuTexture;	 // textures
 	TextureManager playerTexture; 
-	Player player;
-	Image   menu;               // menu image
-	TextDX  *dxFont;            // DirectX font
+	TextureManager groundTexture;
+	Player player;				 // player object
+	Image   menu;                // menu image
+	Image	ground;				 // ground image
+	TextDX  *dxFont;             // DirectX font
 	std::string  message;
 	float messageY;
-	bool menuOn = true;
+	bool menuOn = false;
 
 public:
 	Discordia();

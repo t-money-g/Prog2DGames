@@ -39,13 +39,15 @@ void Discordia::initialize(HWND hwnd)
 	if (!playerTexture.initialize(graphics, PLAYER_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player texture"));
 
-	/*if (!player.initialize(this, playerNS::WIDTH,playerNS::HEIGHT, playerNS::TEXTURE_COLS, &playerTexture))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player")); */
-
 	if (!player.initialize(this, 0,0,0, &playerTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player"));
 
-	
+	if (!groundTexture.initialize(graphics, GROUND_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground texture"));
+
+	if (!ground.initialize(graphics, 0, 0, 0, &groundTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player"));
+
 	menu.setY(0);
 	menu.setX(0);
 
@@ -54,6 +56,11 @@ void Discordia::initialize(HWND hwnd)
 
 	player.setX(GAME_WIDTH / 4);
 	player.setY(GAME_HEIGHT / 4);
+
+	ground.setX(0);
+	//80 is the height of the image
+	// I don't think we have access to this ...yet.
+	ground.setY(GAME_HEIGHT - groundTexture.getHeight());
 	return;
 }
 
@@ -123,7 +130,10 @@ void Discordia::render()
 		dxFont->print(message, 20, (int)messageY);
 	}
 	else {
+		//Display list anyone??
+		ground.draw();
 		player.draw();
+		
 	}
 	
 

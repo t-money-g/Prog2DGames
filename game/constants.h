@@ -39,7 +39,8 @@ const char MENU_IMAGE[] =    "pictures\\fullDemoRender_Green.png";      // menu 
 // TODO currently image only has one image of the player
 // 
 const char PLAYER_IMAGE[] =  "pictures\\idle__000.png";
-const char PLYAER_IMAGE_SWING_SWORD[] = "pictures\\swing__007.png";
+const char PLAYER_IMAGE_SWING_SWORD[] = "pictures\\swing__007.png";
+const char GROUND_IMAGE[] = "tiles\\ground.png";
 
 
 // audio files required by audio.cpp
