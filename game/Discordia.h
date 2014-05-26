@@ -10,6 +10,7 @@
 #include "image.h"
 #include "textDX.h"
 #include "player.h"
+#include "ground.h"
 
 namespace discordiaNS
 {
@@ -25,7 +26,7 @@ private:
 	TextureManager groundTexture;
 	Player player;				 // player object
 	Image   menu;                // menu image
-	Entity	ground;				 // ground image
+	Ground	ground;				 // ground entity
 	TextDX  *dxFont;             // DirectX font
 	std::string  message;
 	float messageY;

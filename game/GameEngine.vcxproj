@@ -94,6 +94,7 @@
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="ground.cpp" />
     <ClCompile Include="inputDialog.cpp" />
     <ClCompile Include="messageDialog.cpp" />
     <ClCompile Include="net.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="gameError.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="graphics.h" />
+    <ClInclude Include="ground.h" />
     <ClInclude Include="inputDialog.h" />
     <ClInclude Include="messageDialog.h" />
     <ClInclude Include="net.h" />

@@ -57,9 +57,8 @@ void Discordia::initialize(HWND hwnd)
 	player.setX(GAME_WIDTH / 4);
 	player.setY(GAME_HEIGHT / 4);
 	player.setVelocity(VECTOR2(0, playerNS::SPEED));
-	ground.setX(0);
 	
-	ground.setY(GAME_HEIGHT - groundTexture.getHeight());
+
 	return;
 }
 
@@ -89,11 +88,7 @@ void Discordia::update()
 		{
 			player.setX(player.getX() - frameTime * playerNS::SPEED);
 		}
-		if (input->isKeyDown(PLAYER_DOWN))
-		{
-			player.setY(player.getY() + frameTime * playerNS::SPEED);
-			//player.setVelocity(VECTOR2(0, playerNS::SPEED));
-		}
+		
 		if (input->isKeyDown(PLAYER_UP))
 		{
 		
@@ -104,6 +99,7 @@ void Discordia::update()
 		//GameLogic
 	}
 	player.update(frameTime);
+	ground.update(frameTime);
 }
 
 
@@ -114,13 +110,17 @@ void Discordia::startLevel() {
 // Artificial Intelligence
 //=============================================================================
 void Discordia::ai()
-{}
+{
+
+}
 
 //=============================================================================
 // Handle collisions
 //=============================================================================
 void Discordia::collisions()
-{}
+{
+	
+}
 
 //=============================================================================
 // Render game items

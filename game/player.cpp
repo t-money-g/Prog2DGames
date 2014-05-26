@@ -12,12 +12,18 @@ Player::Player() : Entity()
 	startFrame = playerNS::PLAYER_START_FRAME;
 	endFrame = playerNS::PLAYER_END_FRAME;
 
-	status = playerNS::IDLE;
+	status = playerNS::FALLING;
 	active = true;
 	velocity.x = 0;
 	velocity.y = 0;
 	mass = playerNS::MASS;
 	jumpHeight = playerNS::HEIGHT + playerNS::HEIGHT / 2;
+
+	edge.top = -playerNS::HEIGHT / 2;             // set collision edges
+	edge.bottom = playerNS::HEIGHT / 2;
+	edge.left = -playerNS::WIDTH / 2;
+	edge.right = playerNS::WIDTH / 2;
+	collisionType = entityNS::ROTATED_BOX;
 }
 
 //initalize the player
@@ -47,15 +53,16 @@ void Player::update(float frameTime)
 		spriteData.x = GAME_WIDTH - playerNS::WIDTH * getScale();
 	}
 
-	if (spriteData.y > GAME_HEIGHT - playerNS::HEIGHT * getScale())
+	//the floor is 80px high and we want to appear on the ground which is at 15px
+	if (spriteData.y > GAME_HEIGHT - 65 - (playerNS::HEIGHT  * getScale()))
 	{
-		spriteData.y = GAME_HEIGHT - playerNS::HEIGHT * getScale();	
+		spriteData.y = GAME_HEIGHT - 65 -(playerNS::HEIGHT  * getScale());	
 		status = playerNS::IDLE;
 	}
 
 	//if (spriteData.y ) is equal to the height of one jump
 	//then we are falling
-	if (spriteData.y <  GAME_HEIGHT - (jumpHeight)* getScale()) {
+	if (spriteData.y <  GAME_HEIGHT - 65 - (jumpHeight * getScale())) {
 		velocity.y += frameTime * 2000.0f;
 		status = playerNS::FALLING;
 	}
@@ -76,4 +83,7 @@ playerNS::STATUS Player::getStatus() {
 
 	return status;
 
+}
+void Player::setStatus(playerNS::STATUS inStatus) {
+	status = inStatus;
 }
