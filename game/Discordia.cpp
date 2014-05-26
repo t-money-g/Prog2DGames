@@ -39,7 +39,7 @@ void Discordia::initialize(HWND hwnd)
 	if (!playerTexture.initialize(graphics, PLAYER_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player texture"));
 
-	if (!player.initialize(this, playerNS::WIDTH,playerNS::HEIGHT,0, &playerTexture))
+	if (!player.initialize(this, playerNS::WIDTH,playerNS::HEIGHT,playerNS::TEXTURE_COLS, &playerTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player"));
 
 	if (!groundTexture.initialize(graphics, GROUND_IMAGE))
@@ -95,6 +95,11 @@ void Discordia::update()
 			if (player.getStatus() != playerNS::FALLING) {
 				player.jump();
 			}
+		}
+
+		if (input->getMouseLButton())
+		{
+			player.slice();
 		}
 		//GameLogic
 	}

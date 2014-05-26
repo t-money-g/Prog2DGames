@@ -24,19 +24,32 @@ Player::Player() : Entity()
 	edge.left = -playerNS::WIDTH / 2;
 	edge.right = playerNS::WIDTH / 2;
 	collisionType = entityNS::ROTATED_BOX;
+	slicing = false;
 }
 
 //initalize the player
 bool Player::initialize(Game *gamePtr, int width, int height, int ncols,
                             TextureManager *textureM)
 {
+	playerSlice.initialize(gamePtr->getGraphics(),width,height, ncols,textureM);
+	playerSlice.setFrames(playerNS::PLAYER_SLICE_START_FRAME, playerNS::PLAYER_SLICE_END_FRAME);
+	playerSlice.setCurrentFrame(playerNS::PLAYER_SLICE_START_FRAME);
+	playerSlice.setFrameDelay(playerNS::PLAYER_ATTACK_ANIMATION_DELAY);
+	playerSlice.setLoop(false);
+	
 	return (Entity::initialize(gamePtr, width, height, ncols, textureM));
 }
 
 //Draw hero
 void Player::draw()
 {
-	Image::draw();
+	if (slicing) {
+		playerSlice.draw(spriteData);
+		slicing = false;
+	}
+	else {
+		Image::draw();
+	}
 }
 
 // called once per frame
@@ -86,4 +99,7 @@ playerNS::STATUS Player::getStatus() {
 }
 void Player::setStatus(playerNS::STATUS inStatus) {
 	status = inStatus;
+}
+void Player::slice() {
+	slicing = true;
 }

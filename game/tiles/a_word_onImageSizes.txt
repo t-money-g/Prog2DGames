@@ -1,0 +1,7 @@
+player is 96 x 120  a  1.25 ratio
+this is an optimal size ... for now
+I'm working on getting the animation system
+working with the current engine implementation
+
+aha! trimming only what I need gives me a decent sprite
+sheet that I can define as columns in the game

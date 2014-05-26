@@ -38,8 +38,9 @@ const double PI = 3.14159265;
 const char MENU_IMAGE[] =    "pictures\\fullDemoRender_Green.png";      // menu texture
 // TODO currently image only has one image of the player
 // 
-const char PLAYER_IMAGE[] =  "pictures\\idle__000.png";
-const char PLAYER_IMAGE_SWING_SWORD[] = "pictures\\swing__007.png";
+//const char PLAYER_IMAGE[] =  "pictures\\idle__000.png";
+//const char PLAYER_IMAGE[] = "tiles\\swing_192x120.png";
+const char PLAYER_IMAGE[] = "tiles\\slice_equal_frames_game.png";
 const char GROUND_IMAGE[] = "tiles\\ground.png";
 
 
