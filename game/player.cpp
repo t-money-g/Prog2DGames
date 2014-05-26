@@ -8,12 +8,16 @@ Player::Player() : Entity()
 	spriteData.x = playerNS::X;
 	spriteData.y = playerNS::Y;
 	spriteData.rect.bottom = playerNS::HEIGHT;
-	spriteData.rect.bottom = playerNS::WIDTH;
+	spriteData.rect.right = playerNS::WIDTH;
 	startFrame = playerNS::PLAYER_START_FRAME;
 	endFrame = playerNS::PLAYER_END_FRAME;
 
 	status = playerNS::IDLE;
-
+	active = true;
+	velocity.x = 0;
+	velocity.y = 0;
+	mass = playerNS::MASS;
+	jumpHeight = playerNS::HEIGHT + playerNS::HEIGHT / 2;
 }
 
 //initalize the player
@@ -34,9 +38,42 @@ void Player::draw()
 void Player::update(float frameTime)
 {
 	Entity::update(frameTime);
+
+	spriteData.x += frameTime * velocity.x;
+	spriteData.y += frameTime * velocity.y;
+	//if we hit the right of the screen
+	if (spriteData.x > GAME_WIDTH - playerNS::WIDTH * getScale())
+	{
+		spriteData.x = GAME_WIDTH - playerNS::WIDTH * getScale();
+	}
+
+	if (spriteData.y > GAME_HEIGHT - playerNS::HEIGHT * getScale())
+	{
+		spriteData.y = GAME_HEIGHT - playerNS::HEIGHT * getScale();	
+		status = playerNS::IDLE;
+	}
+
+	//if (spriteData.y ) is equal to the height of one jump
+	//then we are falling
+	if (spriteData.y <  GAME_HEIGHT - (jumpHeight)* getScale()) {
+		velocity.y += frameTime * 2000.0f;
+		status = playerNS::FALLING;
+	}
 }
 
 void Player::damage(int Weapon)
 {
+
+}
+
+void Player::jump()
+{	
+		status = playerNS::JUMPING;
+		setVelocity(VECTOR2(0, -playerNS::JUMP_SPEED));
+}
+
+playerNS::STATUS Player::getStatus() {
+
+	return status;
 
 }

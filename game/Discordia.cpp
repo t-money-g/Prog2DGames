@@ -39,13 +39,13 @@ void Discordia::initialize(HWND hwnd)
 	if (!playerTexture.initialize(graphics, PLAYER_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player texture"));
 
-	if (!player.initialize(this, 0,0,0, &playerTexture))
+	if (!player.initialize(this, playerNS::WIDTH,playerNS::HEIGHT,0, &playerTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player"));
 
 	if (!groundTexture.initialize(graphics, GROUND_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground texture"));
 
-	if (!ground.initialize(graphics, 0, 0, 0, &groundTexture))
+	if (!ground.initialize(this, 0, 0, 0, &groundTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player"));
 
 	menu.setY(0);
@@ -56,10 +56,9 @@ void Discordia::initialize(HWND hwnd)
 
 	player.setX(GAME_WIDTH / 4);
 	player.setY(GAME_HEIGHT / 4);
-
+	player.setVelocity(VECTOR2(0, playerNS::SPEED));
 	ground.setX(0);
-	//80 is the height of the image
-	// I don't think we have access to this ...yet.
+	
 	ground.setY(GAME_HEIGHT - groundTexture.getHeight());
 	return;
 }
@@ -79,10 +78,12 @@ void Discordia::update()
 		}
 	}
 	else {
-	
+		//we should implement a state 
+		//machine here
 		if (input->isKeyDown(PLAYER_RIGHT))
 		{
 			player.setX(player.getX() + frameTime * playerNS::SPEED);
+		
 		}
 		if (input->isKeyDown(PLAYER_LEFT))
 		{
@@ -91,14 +92,18 @@ void Discordia::update()
 		if (input->isKeyDown(PLAYER_DOWN))
 		{
 			player.setY(player.getY() + frameTime * playerNS::SPEED);
+			//player.setVelocity(VECTOR2(0, playerNS::SPEED));
 		}
 		if (input->isKeyDown(PLAYER_UP))
 		{
-			player.setY(player.getY() - frameTime * playerNS::SPEED);
+		
+			if (player.getStatus() != playerNS::FALLING) {
+				player.jump();
+			}
 		}
 		//GameLogic
 	}
-
+	player.update(frameTime);
 }
 
 
@@ -149,6 +154,7 @@ void Discordia::releaseAll()
 	dxFont->onLostDevice();
 	menuTexture.onLostDevice();
 	playerTexture.onLostDevice();
+	groundTexture.onLostDevice();
 	Game::releaseAll();
 	return;
 }
@@ -161,6 +167,7 @@ void Discordia::resetAll()
 {
 	menuTexture.onResetDevice();
 	playerTexture.onResetDevice();
+	groundTexture.onResetDevice();
 	dxFont->onResetDevice();
 	Game::resetAll();
 	return;

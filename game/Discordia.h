@@ -25,7 +25,7 @@ private:
 	TextureManager groundTexture;
 	Player player;				 // player object
 	Image   menu;                // menu image
-	Image	ground;				 // ground image
+	Entity	ground;				 // ground image
 	TextDX  *dxFont;             // DirectX font
 	std::string  message;
 	float messageY;
