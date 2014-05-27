@@ -59,7 +59,7 @@ void Discordia::initialize(HWND hwnd)
 
 	player.setVelocity(VECTOR2(0, playerNS::SPEED));
 	
-
+	goblin.setVelocity(VECTOR2(goblinNS::SPEED, goblinNS::SPEED));
 	return;
 }
 
@@ -104,9 +104,10 @@ void Discordia::update()
 		}
 		
 	}
-	player.update(frameTime);
+	
 	goblin.update(frameTime);
 	ground.update(frameTime);
+	player.update(frameTime);
 }
 
 
@@ -126,7 +127,18 @@ void Discordia::ai()
 //=============================================================================
 void Discordia::collisions()
 {
-	
+	//if playercolliding with goblin and is slicing
+	//damage goblin
+	//if player colliding with goblin and is idle
+	//damage player
+
+	VECTOR2 collisionVector;
+	if (player.collidesWith(goblin, collisionVector) && player.isSlicing()) {
+		goblin.damage();
+	}
+	if (player.collidesWith(goblin, collisionVector) && player.isSlicing() == false) {
+		//player.bounce(collisionVector, goblin);
+	}
 }
 
 //=============================================================================
@@ -144,9 +156,11 @@ void Discordia::render()
 	else {
 		graphics->setBackColor(graphicsNS::BLUE);
 		//Display list anyone??
+		//these objects are drawn on top of each other
 		ground.draw();
-		player.draw();
+		
 		goblin.draw();
+		player.draw();
 	}
 	
 

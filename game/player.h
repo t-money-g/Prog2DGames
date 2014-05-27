@@ -68,5 +68,7 @@ public:
 	//give the player a direction to walk in
 	void walkInDirection(playerNS::DIRECTION direction, float frameTime);
 
+	bool isSlicing();
+
 };
 #endif

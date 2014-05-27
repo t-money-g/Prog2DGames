@@ -119,6 +119,6 @@ void Player::walkInDirection(playerNS::DIRECTION newDirection,float frameTime) {
 		direction = newDirection;
 		setX(getX() + frameTime * playerNS::SPEED);
 	}
-
-	
 }
+
+bool Player::isSlicing() { return slicing; }

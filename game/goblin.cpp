@@ -14,6 +14,7 @@ Goblin::Goblin() : Entity()
 
 	status = goblinNS::IDLE;
 	active = true;
+	flipHorizontal(true);
 	
 }
 
@@ -31,16 +32,44 @@ void Goblin::draw()
 void Goblin::update(float frameTime)
 {
 	Entity::update(frameTime);
+
+	spriteData.x += frameTime * velocity.x;
+	spriteData.y += frameTime * velocity.y;
+	//if we hit the right of the screen
+	if (spriteData.x > GAME_WIDTH - goblinNS::WIDTH * getScale())
+	{
+		flipHorizontal(false);
+		spriteData.x = GAME_WIDTH - goblinNS::WIDTH * getScale();
+		velocity.x = -velocity.x;
+	}
+
+	if (spriteData.x < 0) {
+		flipHorizontal(true);
+		spriteData.x = 0;
+		velocity.x = -velocity.x;
+	}
+
+	//the floor is 80px high and we want to appear on the ground which is at 15px
+	if (spriteData.y > GAME_HEIGHT - 65 - (goblinNS::HEIGHT  * getScale()))
+	{
+		spriteData.y = GAME_HEIGHT - 65 - (goblinNS::HEIGHT  * getScale());
+	}
+
 }
 
 void Goblin::walkForward()
 {
-
+	//setVelocity()
 }
 
 void Goblin::damage()
 {
-
+	if (getX() > GAME_WIDTH / 2) {
+		setX(getX() + 50);
+	}
+	if (getX() < GAME_WIDTH / 2) {
+		setX(getX() - 50);
+	}
 }
 
 goblinNS::STATUS Goblin::getStatus() {

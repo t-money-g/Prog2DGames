@@ -17,6 +17,7 @@ namespace goblinNS {
 	const int GOBLIN_END_FRAME = 0;
 	enum STATUS { IDLE, WALKFORWARD};
 	const float MASS = .50f;
+	const int SPEED = 100;
 }
 class Goblin :	public Entity
 {
