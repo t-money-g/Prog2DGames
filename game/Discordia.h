@@ -34,7 +34,7 @@ private:
 	TextDX  *dxFont;             // DirectX font
 	std::string  message;
 	float messageY;
-	bool menuOn = false;
+	bool menuOn = true;
 
 public:
 	Discordia();

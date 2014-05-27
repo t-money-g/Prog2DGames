@@ -18,7 +18,7 @@
 
 // window
 const char CLASS_NAME[] = "Discordia";
-const char GAME_TITLE[] = "Discordia v0.1";
+const char GAME_TITLE[] = "Discordia v0.4";
 const bool FULLSCREEN = false;              // windowed or fullscreen
 // a 16:10 resolution seems to be OK see: http:///www.bit-tech.net/blog/2012/10/22/16-10-vs-16-9-the-monitor-aspect-ratio/
 const UINT GAME_WIDTH =  960;               // width of game in pixels

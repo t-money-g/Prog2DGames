@@ -57,10 +57,7 @@ void Discordia::initialize(HWND hwnd)
 	menu.setY(0);
 	menu.setX(0);
 
-	player.setVelocity(VECTOR2(0, playerNS::SPEED));
 	
-	goblin.setVelocity(VECTOR2(goblinNS::SPEED, goblinNS::SPEED));
-	return;
 }
 
 //=============================================================================
@@ -102,16 +99,21 @@ void Discordia::update()
 		{
 			player.slice();
 		}
+
+		goblin.update(frameTime);
+		ground.update(frameTime);
+		player.update(frameTime);
 		
 	}
 	
-	goblin.update(frameTime);
-	ground.update(frameTime);
-	player.update(frameTime);
+	
 }
 
 
 void Discordia::startLevel() {
+	player.setVelocity(VECTOR2(0, playerNS::SPEED));
+
+	goblin.setVelocity(VECTOR2(goblinNS::SPEED, goblinNS::SPEED));
 
 }
 //=============================================================================
