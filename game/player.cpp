@@ -77,6 +77,7 @@ void Player::update(float frameTime)
 	//if (spriteData.y ) is equal to the height of one jump
 	//then we are falling
 	if (spriteData.y <  GAME_HEIGHT - 65 - (jumpHeight * getScale())) {
+		//gravity is arbitrary at the moment 
 		velocity.y += frameTime * 2000.0f;
 		status = playerNS::FALLING;
 	}

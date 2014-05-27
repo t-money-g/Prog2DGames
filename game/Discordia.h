@@ -11,6 +11,7 @@
 #include "textDX.h"
 #include "player.h"
 #include "ground.h"
+#include "goblin.h"
 
 namespace discordiaNS
 {
@@ -24,9 +25,12 @@ private:
 	TextureManager menuTexture;	 // textures
 	TextureManager playerTexture; 
 	TextureManager groundTexture;
+	TextureManager goblinTexture;
+
 	Player player;				 // player object
 	Image   menu;                // menu image
 	Ground	ground;				 // ground entity
+	Goblin goblin;
 	TextDX  *dxFont;             // DirectX font
 	std::string  message;
 	float messageY;

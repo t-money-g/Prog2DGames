@@ -42,6 +42,7 @@ const char MENU_IMAGE[] =    "pictures\\fullDemoRender_Green.png";      // menu 
 //const char PLAYER_IMAGE[] = "tiles\\swing_192x120.png";
 const char PLAYER_IMAGE[] = "tiles\\slice_equal_frames_game.png";
 const char GROUND_IMAGE[] = "tiles\\ground.png";
+const char GOBLIN_IMAGE[] = "tiles\\gremlin.png";
 
 
 // audio files required by audio.cpp

@@ -22,8 +22,7 @@ namespace playerNS
 
 	const int PLAYER_SLICE_START_FRAME = 1;
 	const int PLAYER_SLICE_END_FRAME = 0;
-	const int PLAYER_SLICE_WIDTH = 167;
-	const int PLAYER_SLICE_HEIGHT = 138;
+
 
 	const float PLAYER_ATTACK_ANIMATION_DELAY = 0.2f;
 
@@ -31,7 +30,7 @@ namespace playerNS
 	const float JUMP_SPEED = 400;
 	enum STATUS { IDLE, RUNNING, FALLING,JUMPING,SLICE};
 	enum DIRECTION { LEFT, RIGHT};
-	const float MASS = 1.0f;
+	const float MASS = 1.25f;
 
 }
 

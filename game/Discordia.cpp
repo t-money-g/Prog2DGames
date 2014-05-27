@@ -48,14 +48,15 @@ void Discordia::initialize(HWND hwnd)
 	if (!ground.initialize(this, 0, 0, 0, &groundTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player"));
 
+	if (!goblinTexture.initialize(graphics, GOBLIN_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing goblin texture"));
+
+	if (!goblin.initialize(this, goblinNS::WIDTH, goblinNS::HEIGHT, goblinNS::TEXTURE_COLS, &goblinTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing goblin"));
+
 	menu.setY(0);
 	menu.setX(0);
 
-	player.setFrames(playerNS::PLAYER_START_FRAME, playerNS::PLAYER_END_FRAME);
-	player.setCurrentFrame(playerNS::PLAYER_START_FRAME);
-
-	player.setX(GAME_WIDTH / 4);
-	player.setY(GAME_HEIGHT / 4);
 	player.setVelocity(VECTOR2(0, playerNS::SPEED));
 	
 
@@ -86,10 +87,7 @@ void Discordia::update()
 		}
 		if (input->isKeyDown(PLAYER_LEFT))
 		{
-			//player.moveLeft
 			player.walkInDirection(playerNS::LEFT, frameTime);
-			
-		
 		}
 		
 		if (input->isKeyDown(PLAYER_UP))
@@ -107,6 +105,7 @@ void Discordia::update()
 		
 	}
 	player.update(frameTime);
+	goblin.update(frameTime);
 	ground.update(frameTime);
 }
 
@@ -136,17 +135,18 @@ void Discordia::collisions()
 void Discordia::render()
 {
 	graphics->spriteBegin();                // begin drawing sprites
-
+	
 	if (menuOn) {
 		menu.draw();
 		dxFont->setFontColor(graphicsNS::ORANGE);
 		dxFont->print(message, 20, (int)messageY);
 	}
 	else {
+		graphics->setBackColor(graphicsNS::BLUE);
 		//Display list anyone??
 		ground.draw();
 		player.draw();
-		
+		goblin.draw();
 	}
 	
 
@@ -163,6 +163,7 @@ void Discordia::releaseAll()
 	menuTexture.onLostDevice();
 	playerTexture.onLostDevice();
 	groundTexture.onLostDevice();
+	goblinTexture.onLostDevice();
 	Game::releaseAll();
 	return;
 }
@@ -176,6 +177,7 @@ void Discordia::resetAll()
 	menuTexture.onResetDevice();
 	playerTexture.onResetDevice();
 	groundTexture.onResetDevice();
+	goblinTexture.onResetDevice();
 	dxFont->onResetDevice();
 	Game::resetAll();
 	return;
