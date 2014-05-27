@@ -30,6 +30,7 @@ namespace playerNS
 	const float SPEED = 200;
 	const float JUMP_SPEED = 400;
 	enum STATUS { IDLE, RUNNING, FALLING,JUMPING,SLICE};
+	enum DIRECTION { LEFT, RIGHT};
 	const float MASS = 1.0f;
 
 }
@@ -40,9 +41,10 @@ class Player :	public Entity
 {
 private: 
 	playerNS::STATUS status;
+	playerNS::DIRECTION direction;
 	bool slicing;
 	Image playerSlice;
-
+	
 public:
 	int jumpHeight;
 	Player();
@@ -62,5 +64,10 @@ public:
 	
 	//Will play slicing frame
 	void slice();
+
+	playerNS::DIRECTION getDirection();
+	//give the player a direction to walk in
+	void walkInDirection(playerNS::DIRECTION direction, float frameTime);
+
 };
 #endif

@@ -81,12 +81,15 @@ void Discordia::update()
 		//machine here
 		if (input->isKeyDown(PLAYER_RIGHT))
 		{
-			player.setX(player.getX() + frameTime * playerNS::SPEED);
+			player.walkInDirection(playerNS::RIGHT, frameTime);
 		
 		}
 		if (input->isKeyDown(PLAYER_LEFT))
 		{
-			player.setX(player.getX() - frameTime * playerNS::SPEED);
+			//player.moveLeft
+			player.walkInDirection(playerNS::LEFT, frameTime);
+			
+		
 		}
 		
 		if (input->isKeyDown(PLAYER_UP))
@@ -101,7 +104,7 @@ void Discordia::update()
 		{
 			player.slice();
 		}
-		//GameLogic
+		
 	}
 	player.update(frameTime);
 	ground.update(frameTime);

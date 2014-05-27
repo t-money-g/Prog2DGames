@@ -25,6 +25,7 @@ Player::Player() : Entity()
 	edge.right = playerNS::WIDTH / 2;
 	collisionType = entityNS::ROTATED_BOX;
 	slicing = false;
+	direction = playerNS::DIRECTION::RIGHT;
 }
 
 //initalize the player
@@ -88,8 +89,8 @@ void Player::damage(int Weapon)
 
 void Player::jump()
 {	
-		status = playerNS::JUMPING;
-		setVelocity(VECTOR2(0, -playerNS::JUMP_SPEED));
+	status = playerNS::JUMPING;
+	setVelocity(VECTOR2(0, -playerNS::JUMP_SPEED));
 }
 
 playerNS::STATUS Player::getStatus() {
@@ -102,4 +103,21 @@ void Player::setStatus(playerNS::STATUS inStatus) {
 }
 void Player::slice() {
 	slicing = true;
+}
+
+void Player::walkInDirection(playerNS::DIRECTION newDirection,float frameTime) {
+	
+	if (newDirection == playerNS::LEFT) {
+		flipHorizontal(true);
+		direction = newDirection;
+		setX(getX() - frameTime * playerNS::SPEED);
+	}
+	
+	if (newDirection == playerNS::RIGHT) {
+		flipHorizontal(false);
+		direction = newDirection;
+		setX(getX() + frameTime * playerNS::SPEED);
+	}
+
+	
 }
