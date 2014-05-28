@@ -46,7 +46,11 @@ void Discordia::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground texture"));
 
 	if (!ground.initialize(this, 0, 0, 0, &groundTexture))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing player"));
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initalizing ground"));
+
+	//platform.setSpriteDataRect
+	if (!platform.initialize(this, 0, 0, 0, &groundTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing platform."));
 
 	if (!goblinTexture.initialize(graphics, GOBLIN_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing goblin texture"));
@@ -71,10 +75,11 @@ void Discordia::update()
 			menuOn = false;
 			input->clearAll();
 			//start the game
-			startLevel();
+			
 		}
 	}
 	else {
+		startLevel();
 		//we should implement a state 
 		//machine here
 		if (input->isKeyDown(PLAYER_RIGHT))
@@ -102,6 +107,7 @@ void Discordia::update()
 
 		goblin.update(frameTime);
 		ground.update(frameTime);
+		platform.update(frameTime);
 		player.update(frameTime);
 		
 	}
@@ -111,6 +117,9 @@ void Discordia::update()
 
 
 void Discordia::startLevel() {
+
+	platform.setX(GAME_WIDTH - 200);
+	platform.setY(GAME_HEIGHT - 170);
 	player.setVelocity(VECTOR2(0, playerNS::SPEED));
 
 	goblin.setVelocity(VECTOR2(goblinNS::SPEED, goblinNS::SPEED));
@@ -138,9 +147,7 @@ void Discordia::collisions()
 	if (player.collidesWith(goblin, collisionVector) && player.isSlicing()) {
 		goblin.damage();
 	}
-	if (player.collidesWith(goblin, collisionVector) && player.isSlicing() == false) {
-		//player.bounce(collisionVector, goblin);
-	}
+	
 }
 
 //=============================================================================
@@ -160,7 +167,7 @@ void Discordia::render()
 		//Display list anyone??
 		//these objects are drawn on top of each other
 		ground.draw();
-		
+		platform.draw();
 		goblin.draw();
 		player.draw();
 	}

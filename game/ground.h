@@ -16,7 +16,11 @@ class Ground :	public Entity
 {
 public:
 	Ground();
-	
+
+	virtual void draw();
+
+	virtual bool initialize(Game *gamePtr, int width, int height, int ncols, TextureManager *textureM);
+	// shouldn't haven't to update the position	
 	void update(float frameTime);
 };
 

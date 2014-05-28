@@ -1,7 +1,7 @@
 #include "ground.h"
 
 
-Ground::Ground()
+Ground::Ground() : Entity()
 {
 	spriteData.width = groundNS::WIDTH;         // size of Ship1
 	spriteData.height = groundNS::HEIGHT;
@@ -20,6 +20,18 @@ Ground::Ground()
 	collisionType = entityNS::ROTATED_BOX;
 	mass = groundNS::MASS;
 }
+
+bool Ground::initialize(Game *gamePtr, int width, int height, int ncols, TextureManager *textureM)
+{
+	return (Entity::initialize(gamePtr, width, height, ncols, textureM));
+}
+
+//Draw ground
+void Ground::draw()
+{
+	Image::draw();
+}
+
 
 void Ground::update(float frameTime) {
 

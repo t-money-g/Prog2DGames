@@ -17,7 +17,7 @@ Player::Player() : Entity()
 	velocity.x = 0;
 	velocity.y = 0;
 	mass = playerNS::MASS;
-	jumpHeight = playerNS::HEIGHT + playerNS::HEIGHT / 2;
+	jumpHeight = playerNS::HEIGHT + (playerNS::HEIGHT / 2);
 
 	edge.top = -playerNS::HEIGHT / 2;             // set collision edges
 	edge.bottom = playerNS::HEIGHT / 2;

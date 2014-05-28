@@ -30,11 +30,12 @@ private:
 	Player player;				 // player object
 	Image   menu;                // menu image
 	Ground	ground;				 // ground entity
+	Ground  platform; 
 	Goblin goblin;
 	TextDX  *dxFont;             // DirectX font
 	std::string  message;
 	float messageY;
-	bool menuOn = true;
+	bool menuOn = false;
 
 public:
 	Discordia();

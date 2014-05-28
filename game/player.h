@@ -13,7 +13,7 @@
 namespace playerNS
 {
 	const int WIDTH = 270;
-	const int HEIGHT =176;
+	const int HEIGHT = 176;
 	const int X = GAME_WIDTH / 4;
 	const int Y = GAME_HEIGHT / 4;
 	const int TEXTURE_COLS = 2;
